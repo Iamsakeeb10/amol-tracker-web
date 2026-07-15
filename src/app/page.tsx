@@ -5,7 +5,6 @@ import Features from '@/components/Features';
 import Screenshots from '@/components/Screenshots';
 import About from '@/components/About';
 import Download from '@/components/Download';
-import PrivacySection from '@/components/PrivacySection';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -18,7 +17,6 @@ export default function Home() {
       <Screenshots />
       <About />
       <Download />
-      <PrivacySection />
       <Footer />
     </main>
   );

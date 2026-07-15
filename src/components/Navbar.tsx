@@ -143,10 +143,14 @@ export default function Navbar() {
                 border: '1px solid rgba(201,168,76,0.4)',
                 background: 'transparent',
                 color: 'var(--gold)',
-                padding: '6px 12px',
+                padding: '8px 14px',
                 borderRadius: 20,
                 cursor: 'pointer',
                 transition: 'all 0.2s',
+                height: 34,
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = 'var(--gold)';
@@ -176,6 +180,10 @@ export default function Navbar() {
                 borderRadius: 20,
                 textDecoration: 'none',
                 transition: 'opacity 0.2s',
+                height: 34,
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
               onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.85')}
               onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
