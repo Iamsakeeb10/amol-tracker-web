@@ -96,11 +96,10 @@ export default function About() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: 20,
                     flexShrink: 0,
                   }}
                 >
-                  {item.icon}
+                  <item.icon size={20} color="var(--gold)" aria-hidden="true" />
                 </div>
                 <div>
                   <h3

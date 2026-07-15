@@ -90,10 +90,9 @@ export default function Features() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: 32,
                 }}
               >
-                {item.icon}
+                <item.icon size={24} color="var(--gold)" aria-hidden="true" />
               </div>
 
               {/* Title */}

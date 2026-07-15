@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { ChevronUp } from 'lucide-react';
+import { ChevronUp, Moon } from 'lucide-react';
 import { content } from '@/lib/content';
 import { useLang } from '@/context/LanguageContext';
+import { PrayingHands } from '@/lib/icons';
 import Link from 'next/link';
 
 export default function Footer() {
@@ -43,8 +44,19 @@ export default function Footer() {
         <div className="section-container" style={{ textAlign: 'center' }}>
           {/* Row 1: App name + tagline */}
           <div style={{ marginBottom: 24 }}>
-            <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--gold)' }}>
-              🌙 {t(content.nav.brand)}
+            <div
+              style={{
+                fontSize: 20,
+                fontWeight: 700,
+                color: 'var(--gold)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 8,
+              }}
+            >
+              <Moon size={20} aria-hidden="true" />
+              {t(content.nav.brand)}
             </div>
             <p
               style={{
@@ -53,7 +65,13 @@ export default function Footer() {
                 marginTop: 8,
               }}
             >
-              {t(content.footer.tagline)}
+              {t(content.footer.tagline)}{' '}
+              <PrayingHands
+                size={14}
+                color="var(--gold)"
+                style={{ display: 'inline', verticalAlign: 'middle' }}
+                aria-hidden="true"
+              />
             </p>
           </div>
 

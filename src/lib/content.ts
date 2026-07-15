@@ -1,3 +1,17 @@
+import {
+  Moon,
+  ClipboardList,
+  Globe,
+  Flame,
+  CalendarDays,
+  Trophy,
+  BookOpen,
+  Lock,
+  BadgeCheck,
+  Handshake,
+} from 'lucide-react';
+import { PrayingHands, Mosque, Tasbih } from './icons';
+
 export type Lang = 'bn' | 'en';
 
 export const content = {
@@ -12,8 +26,8 @@ export const content = {
   },
   hero: {
     badge: {
-      bn: '🌙 Google Play-এ এখন উপলব্ধ',
-      en: '🌙 Now available on Google Play',
+      bn: 'Google Play-এ এখন উপলব্ধ',
+      en: 'Now available on Google Play',
     },
     headline: {
       bn: 'প্রতিদিনের ইসলামিক আমল\nট্র্যাক করুন — একসাথে',
@@ -59,7 +73,7 @@ export const content = {
     },
     items: [
       {
-        icon: '📋',
+        icon: ClipboardList,
         title: { bn: 'দৈনিক আমল লগ', en: 'Daily Amal Log' },
         desc: {
           bn: '৯টি গুরুত্বপূর্ণ আমল ট্র্যাক করুন। ফরয নামাজ থেকে আযকার পর্যন্ত সব।',
@@ -67,7 +81,7 @@ export const content = {
         },
       },
       {
-        icon: '🌍',
+        icon: Globe,
         title: { bn: 'কমিউনিটি শিট', en: 'Community Sheet' },
         desc: {
           bn: "সবার আমল একটি লাইভ শিটে দেখুন। বন্ধুদের দেখে নিজে অনুপ্রাণিত হন।",
@@ -75,7 +89,7 @@ export const content = {
         },
       },
       {
-        icon: '🔥',
+        icon: Flame,
         title: { bn: 'স্ট্রিক সিস্টেম', en: 'Streak System' },
         desc: {
           bn: 'ধারাবাহিকতা গড়ুন। স্ট্রিক ফ্রিজ ও মাইলস্টোন ব্যাজ পান।',
@@ -83,7 +97,7 @@ export const content = {
         },
       },
       {
-        icon: '📅',
+        icon: CalendarDays,
         title: { bn: 'হিজরি ক্যালেন্ডার', en: 'Hijri Calendar' },
         desc: {
           bn: 'ইসলামিক তারিখে আমলের ইতিহাস দেখুন। মাগরিবের পর তারিখ পরিবর্তন।',
@@ -91,7 +105,7 @@ export const content = {
         },
       },
       {
-        icon: '🏆',
+        icon: Trophy,
         title: { bn: 'লিডারবোর্ড', en: 'Leaderboard' },
         desc: {
           bn: 'দৈনিক ও সাপ্তাহিক র\u200C্যাংকিং দেখুন। সুস্থ প্রতিযোগিতায় এগিয়ে থাকুন।',
@@ -99,7 +113,7 @@ export const content = {
         },
       },
       {
-        icon: '📖',
+        icon: BookOpen,
         title: { bn: 'কুরআন রিডার', en: 'Quran Reader' },
         desc: {
           bn: 'অ্যাপের ভেতরেই কুরআন পড়ুন। বাংলা অনুবাদ সহ।',
@@ -107,7 +121,7 @@ export const content = {
         },
       },
       {
-        icon: '🤲',
+        icon: PrayingHands,
         title: { bn: 'দুআ লিস্ট', en: 'Dua List' },
         desc: {
           bn: 'দৈনিক দুআ সংগ্রহ। কমিউনিটি মেম্বারদের দুআ পাঠান।',
@@ -115,7 +129,7 @@ export const content = {
         },
       },
       {
-        icon: '🕌',
+        icon: Mosque,
         title: { bn: 'কিবলা ও আযান', en: 'Qibla & Azan' },
         desc: {
           bn: 'কিবলার দিক ও নামাজের সময় রিমাইন্ডার। বাংলাদেশ সময় অনুযায়ী।',
@@ -123,7 +137,7 @@ export const content = {
         },
       },
       {
-        icon: '📿',
+        icon: Tasbih,
         title: { bn: 'যিকর কাউন্টার', en: 'Zikr Counter' },
         desc: {
           bn: 'তাসবীহ গণনা করুন। কাস্টম যিকর সেট করুন।',
@@ -157,17 +171,17 @@ export const content = {
     },
     values: [
       {
-        icon: '🔒',
+        icon: Lock,
         title: { bn: 'প্রাইভেট', en: 'Private' },
         desc: { bn: 'আপনার ডেটা বিক্রি হয় না', en: 'Your data is never sold' },
       },
       {
-        icon: '🆓',
+        icon: BadgeCheck,
         title: { bn: 'বিনামূল্যে', en: 'Free' },
         desc: { bn: 'সব ফিচার সম্পূর্ণ ফ্রি', en: 'All features completely free' },
       },
       {
-        icon: '🤝',
+        icon: Handshake,
         title: { bn: 'কমিউনিটি', en: 'Community' },
         desc: { bn: 'একসাথে ভালো থাকুন', en: 'Be better together' },
       },
@@ -188,8 +202,8 @@ export const content = {
   },
   footer: {
     tagline: {
-      bn: 'মুসলিম উম্মাহর জন্য তৈরি, ভালোবাসা দিয়ে 🤲',
-      en: 'Built for the Muslim Ummah, with love 🤲',
+      bn: 'মুসলিম উম্মাহর জন্য তৈরি, ভালোবাসা দিয়ে',
+      en: 'Built for the Muslim Ummah, with love',
     },
     privacy: { bn: 'প্রাইভেসি পলিসি', en: 'Privacy Policy' },
     terms: { bn: 'শর্তাবলী', en: 'Terms & Conditions' },
