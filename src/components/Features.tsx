@@ -1,13 +1,17 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { content } from '@/lib/content';
 import { useLang } from '@/context/LanguageContext';
+
+const INITIAL_COUNT = 9;
 
 export default function Features() {
   const { t } = useLang();
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -17,6 +21,28 @@ export default function Features() {
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
   }, []);
+
+  const allItems = content.features.items;
+  const visibleItems = showAll ? allItems : allItems.slice(0, INITIAL_COUNT);
+  const hasMore = allItems.length > INITIAL_COUNT;
+
+  const handleToggle = useCallback(() => {
+    const willCollapse = showAll;
+
+    if (willCollapse && ref.current) {
+      // Scroll to top of features section before collapsing
+      const sectionTop = ref.current.getBoundingClientRect().top + window.scrollY;
+      const navbarHeight = 64;
+      const targetScroll = sectionTop - navbarHeight - 20;
+
+      // Only scroll if user is below the features section header
+      if (window.scrollY > targetScroll) {
+        window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+      }
+    }
+
+    setShowAll(!showAll);
+  }, [showAll]);
 
   return (
     <section
@@ -58,69 +84,137 @@ export default function Features() {
 
         {/* Features grid */}
         <div className="features-grid">
-          {content.features.items.map((item, i) => (
-            <div
-              key={i}
-              className="feature-card"
+          <AnimatePresence initial={false}>
+            {visibleItems.map((item, i) => (
+              <motion.div
+                key={`feature-${i}`}
+                className="feature-card"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{
+                  duration: 0.25,
+                  delay: showAll && i >= INITIAL_COUNT ? (i - INITIAL_COUNT) * 0.03 : 0,
+                  ease: 'easeOut',
+                }}
+                style={{
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  borderRadius: 16,
+                  padding: 24,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(201,168,76,0.3)';
+                  e.currentTarget.style.background = 'rgba(201,168,76,0.05)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.transition = 'all 0.2s ease';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.transition = 'all 0.2s ease';
+                }}
+              >
+                {/* Icon */}
+                <div
+                  style={{
+                    width: 48,
+                    height: 48,
+                    borderRadius: 12,
+                    background: 'rgba(201,168,76,0.12)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <item.icon size={24} color="var(--gold)" aria-hidden="true" />
+                </div>
+
+                {/* Title */}
+                <h3
+                  style={{
+                    fontSize: 16,
+                    fontWeight: 600,
+                    color: 'var(--white)',
+                    marginTop: 14,
+                  }}
+                >
+                  {t(item.title)}
+                </h3>
+
+                {/* Description */}
+                <p
+                  style={{
+                    fontSize: 14,
+                    color: 'rgba(255,255,255,0.6)',
+                    lineHeight: 1.6,
+                    marginTop: 8,
+                  }}
+                >
+                  {t(item.desc)}
+                </p>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+
+        {/* Show More / Show Less Button */}
+        {hasMore && (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: 48,
+            }}
+          >
+            <motion.button
+              onClick={handleToggle}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               style={{
-                background: 'rgba(255,255,255,0.04)',
-                border: '1px solid rgba(255,255,255,0.08)',
-                borderRadius: 16,
-                padding: 24,
+                background: 'transparent',
+                border: '1px solid rgba(201,168,76,0.4)',
+                borderRadius: 12,
+                padding: '14px 32px',
+                color: 'var(--gold)',
+                fontSize: 15,
+                fontWeight: 600,
+                cursor: 'pointer',
                 transition: 'all 0.2s ease',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(201,168,76,0.3)';
-                e.currentTarget.style.background = 'rgba(201,168,76,0.05)';
-                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.background = 'rgba(201,168,76,0.1)';
+                e.currentTarget.style.borderColor = 'rgba(201,168,76,0.6)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
-                e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
-                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.borderColor = 'rgba(201,168,76,0.4)';
               }}
             >
-              {/* Icon */}
-              <div
-                style={{
-                  width: 48,
-                  height: 48,
-                  borderRadius: 12,
-                  background: 'rgba(201,168,76,0.12)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
+              <span>{showAll ? t(content.features.showLess) : t(content.features.showMore)}</span>
+              <motion.svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                animate={{ rotate: showAll ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
               >
-                <item.icon size={24} color="var(--gold)" aria-hidden="true" />
-              </div>
-
-              {/* Title */}
-              <h3
-                style={{
-                  fontSize: 16,
-                  fontWeight: 600,
-                  color: 'var(--white)',
-                  marginTop: 14,
-                }}
-              >
-                {t(item.title)}
-              </h3>
-
-              {/* Description */}
-              <p
-                style={{
-                  fontSize: 14,
-                  color: 'rgba(255,255,255,0.6)',
-                  lineHeight: 1.6,
-                  marginTop: 8,
-                }}
-              >
-                {t(item.desc)}
-              </p>
-            </div>
-          ))}
-        </div>
+                <path
+                  d="M4 6L8 10L12 6"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </motion.svg>
+            </motion.button>
+          </div>
+        )}
       </div>
 
       <style>{`
