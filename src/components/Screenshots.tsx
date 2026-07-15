@@ -7,6 +7,19 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
+const SCREENSHOT_FILES = [
+  "home",
+  "community",
+  "calendar",
+  "leaderboard",
+  "quran",
+  "dua",
+  "counter",
+  "asmaul_husna",
+  "course",
+  "report",
+];
+
 export default function Screenshots() {
   const { t } = useLang();
   const [imgErrors, setImgErrors] = useState<Record<number, boolean>>({});
@@ -205,7 +218,7 @@ export default function Screenshots() {
                     </div>
                   ) : (
                     <Image
-                      src={`/images/screenshot-${i + 1}.png`}
+                      src={`/images/${SCREENSHOT_FILES[i]}.png`}
                       alt={t(caption)}
                       fill
                       style={{ objectFit: "cover" }}
@@ -281,7 +294,7 @@ export default function Screenshots() {
                     </div>
                   ) : (
                     <Image
-                      src={`/images/screenshot-${previewIndex + 1}.png`}
+                      src={`/images/${SCREENSHOT_FILES[previewIndex]}.png`}
                       alt={t(content.screenshots.captions[previewIndex])}
                       fill
                       style={{ objectFit: "cover" }}
@@ -345,10 +358,10 @@ export default function Screenshots() {
         .screenshot-phone {
           position: relative;
           width: 220px;
-          aspect-ratio: 9 / 19;
+          aspect-ratio: 9 / 20;
           border-radius: 28px;
           border: 1.5px solid rgba(201,168,76,0.3);
-          background: rgba(13,61,46,0.8);
+          background: #0D3D2E;
           overflow: hidden;
           box-shadow: 0 20px 60px rgba(0,0,0,0.4);
           transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -534,10 +547,10 @@ export default function Screenshots() {
           position: relative;
           height: min(78vh, calc(100vh - 100px));
           width: auto;
-          aspect-ratio: 9 / 19;
+          aspect-ratio: 9 / 20;
           border-radius: 36px;
           border: 2px solid rgba(201,168,76,0.35);
-          background: rgba(13,61,46,0.85);
+          background: #0D3D2E;
           overflow: hidden;
           box-shadow: 0 32px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,76,0.1);
         }

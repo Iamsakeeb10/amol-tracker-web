@@ -3,6 +3,7 @@
 import { useLang } from "@/context/LanguageContext";
 import { content } from "@/lib/content";
 import { ChevronDown, Moon, Sparkles } from "lucide-react";
+import Image from "next/image";
 
 export default function Hero() {
   const { t } = useLang();
@@ -299,28 +300,24 @@ export default function Hero() {
                 className="hero-phone-frame"
                 style={{
                   width: 280,
-                  aspectRatio: "9 / 19",
-                  background: "rgba(255,255,255,0.05)",
+                  aspectRatio: "9 / 20",
+                  background: "#0D3D2E",
                   border: "1px solid rgba(201,168,76,0.25)",
                   borderRadius: 36,
                   boxShadow: "0 0 80px rgba(201,168,76,0.15)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
                   overflow: "hidden",
                   marginLeft: "auto",
+                  position: "relative",
                 }}
               >
-                <div
-                  style={{
-                    color: "rgba(201,168,76,0.5)",
-                    fontSize: 14,
-                    textAlign: "center",
-                    padding: 20,
-                  }}
-                >
-                  App Screenshot
-                </div>
+                <Image
+                  src="/images/home.png"
+                  alt="Amol Tracker Home Screen"
+                  fill
+                  style={{ objectFit: "cover" }}
+                  sizes="280px"
+                  priority
+                />
               </div>
             </div>
           </div>
