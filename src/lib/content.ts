@@ -294,6 +294,12 @@ export const content = {
       { bn: 'কমিউনিটি শিট', en: 'Community Sheet' },
       { bn: 'হিজরি ক্যালেন্ডার', en: 'Hijri Calendar' },
       { bn: 'লিডারবোর্ড', en: 'Leaderboard' },
+      { bn: 'কুরআন রিডার', en: 'Quran Reader' },
+      { bn: 'দোয়া সংগ্রহ', en: 'Dua Collection' },
+      { bn: 'যিকির কাউন্টার', en: 'Dhikr Counter' },
+      { bn: 'আসমাউল হুসনা', en: 'Asma ul Husna' },
+      { bn: 'কুইজ', en: 'Quiz' },
+      { bn: 'রিপোর্ট', en: 'Reports' },
     ],
   },
   about: {
