@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Moon } from 'lucide-react';
 import { content } from '@/lib/content';
 import { useLang } from '@/context/LanguageContext';
 
@@ -36,7 +35,7 @@ export default function Download() {
       <div className="section-container">
         {/* Crescent icon */}
         <div style={{ marginBottom: 24 }}>
-          <Moon size={48} color="var(--gold)" role="img" aria-label="Crescent moon" />
+          <img src="/images/icon.png" alt="Amol Tracker" width={48} height={48} style={{ borderRadius: 10 }} />
         </div>
 
         {/* Heading */}

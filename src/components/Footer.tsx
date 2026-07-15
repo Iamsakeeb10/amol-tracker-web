@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { ChevronUp, Moon } from 'lucide-react';
+import { ChevronUp } from 'lucide-react';
 import { content } from '@/lib/content';
 import { useLang } from '@/context/LanguageContext';
 import { PrayingHands } from '@/lib/icons';
@@ -55,7 +55,7 @@ export default function Footer() {
                 gap: 8,
               }}
             >
-              <Moon size={20} aria-hidden="true" />
+              <img src="/images/icon.png" alt="" width={24} height={24} style={{ borderRadius: 5 }} />
               {t(content.nav.brand)}
             </div>
             <p

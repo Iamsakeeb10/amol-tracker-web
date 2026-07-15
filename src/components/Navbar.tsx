@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Moon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { content } from '@/lib/content';
 import { useLang } from '@/context/LanguageContext';
 
@@ -87,11 +87,12 @@ export default function Navbar() {
               textDecoration: 'none',
             }}
           >
-            <Moon size={20} color="var(--gold)" aria-hidden="true" />
+            <img src="/images/icon.png" alt="" width={32} height={32} style={{ borderRadius: 6 }} />
             <span
               style={{
                 fontSize: 18,
                 fontWeight: 600,
+                lineHeight: 1,
                 color: 'var(--gold-light)',
               }}
             >
@@ -262,11 +263,12 @@ export default function Navbar() {
               marginBottom: 16,
             }}
           >
-            <Moon size={24} color="var(--gold)" aria-hidden="true" />
+            <img src="/images/icon.png" alt="" width={32} height={32} style={{ borderRadius: 6 }} />
             <span
               style={{
                 fontSize: 22,
                 fontWeight: 600,
+                lineHeight: 1,
                 color: 'var(--gold-light)',
               }}
             >

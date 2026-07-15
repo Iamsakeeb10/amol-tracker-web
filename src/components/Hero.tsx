@@ -2,7 +2,7 @@
 
 import { useLang } from "@/context/LanguageContext";
 import { content } from "@/lib/content";
-import { ChevronDown, Moon, Sparkles } from "lucide-react";
+import { ChevronDown, Sparkles } from "lucide-react";
 import Image from "next/image";
 
 export default function Hero() {
@@ -108,20 +108,21 @@ export default function Hero() {
               <div
                 style={{
                   display: "inline-flex",
+                  alignItems: "center",
                   alignSelf: "flex-start",
                   border: "1px solid rgba(201,168,76,0.4)",
                   borderRadius: 999,
                   padding: "6px 16px",
                   fontSize: 13,
+                  lineHeight: 1,
                   color: "var(--gold)",
                   marginBottom: 28,
                 }}
               >
-                <Moon
-                  size={14}
-                  color="var(--gold)"
-                  style={{ marginRight: 6, verticalAlign: 'middle' }}
-                  aria-hidden="true"
+                <img
+                  src="/images/icon.png"
+                  alt=""
+                  style={{ width: 16, height: 16, objectFit: "contain", marginRight: 6, verticalAlign: 'middle', borderRadius: 3 }}
                 />
                 {t(content.hero.badge)}
               </div>
