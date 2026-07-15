@@ -5,23 +5,23 @@ import { content } from '@/lib/content';
 import { useLang } from '@/context/LanguageContext';
 
 export default function Hero() {
-  const { t } = useLang();
+const { t } = useLang();
 
-  return (
-    <>
-      <section
-        style={{
+return (
+<>
+
+<section
+style={{
           position: 'relative',
           minHeight: '100vh',
           display: 'flex',
           alignItems: 'center',
           background: 'var(--emerald-deep)',
           overflow: 'hidden',
-        }}
-      >
-        {/* Islamic geometric SVG pattern */}
-        <svg
-          style={{
+        }} >
+{/_ Islamic geometric SVG pattern _/}
+<svg
+style={{
             position: 'absolute',
             top: '50%',
             right: '-5%',
@@ -31,39 +31,38 @@ export default function Hero() {
             opacity: 0.06,
             pointerEvents: 'none',
           }}
-          viewBox="0 0 400 400"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle cx="200" cy="200" r="180" stroke="var(--gold)" strokeWidth="0.5" />
-          <circle cx="200" cy="200" r="140" stroke="var(--gold)" strokeWidth="0.5" />
-          <circle cx="200" cy="200" r="100" stroke="var(--gold)" strokeWidth="0.5" />
-          <circle cx="200" cy="200" r="60" stroke="var(--gold)" strokeWidth="0.5" />
-          <polygon
+viewBox="0 0 400 400"
+fill="none"
+xmlns="http://www.w3.org/2000/svg" >
+<circle cx="200" cy="200" r="180" stroke="var(--gold)" strokeWidth="0.5" />
+<circle cx="200" cy="200" r="140" stroke="var(--gold)" strokeWidth="0.5" />
+<circle cx="200" cy="200" r="100" stroke="var(--gold)" strokeWidth="0.5" />
+<circle cx="200" cy="200" r="60" stroke="var(--gold)" strokeWidth="0.5" />
+<polygon
             points="200,20 220,160 340,120 240,200 340,280 220,240 200,380 180,240 60,280 160,200 60,120 180,160"
             stroke="var(--gold)"
             strokeWidth="0.5"
           />
-          <polygon
+<polygon
             points="200,80 215,175 290,155 225,200 290,245 215,225 200,320 185,225 110,245 175,200 110,155 185,175"
             stroke="var(--gold)"
             strokeWidth="0.5"
           />
-          {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
-            const rad = (angle * Math.PI) / 180;
-            return (
-              <line
-                key={angle}
-                x1="200"
-                y1="200"
-                x2={200 + 180 * Math.cos(rad)}
-                y2={200 + 180 * Math.sin(rad)}
-                stroke="var(--gold)"
-                strokeWidth="0.3"
-              />
-            );
-          })}
-        </svg>
+{[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
+const rad = (angle _ Math.PI) / 180;
+return (
+<line
+key={angle}
+x1="200"
+y1="200"
+x2={200 + 180 _ Math.cos(rad)}
+y2={200 + 180 \* Math.sin(rad)}
+stroke="var(--gold)"
+strokeWidth="0.3"
+/>
+);
+})}
+</svg>
 
         <div
           className="section-container"
@@ -72,13 +71,14 @@ export default function Hero() {
           <div
             className="hero-grid"
             style={{
-              display: 'flex',
+              display: 'grid',
+              gridTemplateColumns: '55% 45%',
               gap: 64,
               alignItems: 'center',
             }}
           >
             {/* LEFT COLUMN */}
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
               {/* Badge */}
               <div
                 style={{
@@ -133,7 +133,7 @@ export default function Hero() {
                   marginBottom: 32,
                 }}
               >
-                <a
+
                   href="https://play.google.com/store/apps/details?id=com.shakib.amol.amol_tracker_app"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -240,7 +240,7 @@ export default function Hero() {
             {/* RIGHT COLUMN — Phone mockup */}
             <div
               className="hero-phone-col"
-              style={{ flex: '0 0 auto', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}
+              style={{ display: 'flex', justifyContent: 'flex-end' }}
             >
               <div
                 className="hero-phone-frame"
@@ -255,7 +255,6 @@ export default function Hero() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   overflow: 'hidden',
-                  marginLeft: 'auto',
                 }}
               >
                 <div
@@ -301,7 +300,7 @@ export default function Hero() {
 
         @media (max-width: 768px) {
           .hero-grid {
-            flex-direction: column !important;
+            grid-template-columns: 1fr !important;
             gap: 48px !important;
             text-align: center;
           }
@@ -312,5 +311,6 @@ export default function Hero() {
         }
       `}</style>
     </>
-  );
+
+);
 }
