@@ -63,6 +63,21 @@ export default function Screenshots() {
     return () => el.removeEventListener("scroll", updateScrollButtons);
   }, [updateScrollButtons]);
 
+  // One-time "nudge" affordance so users know the carousel scrolls,
+  // especially useful on mobile where there are no arrows visible.
+  useEffect(() => {
+    if (!visible || !scrollRef.current) return;
+    const el = scrollRef.current;
+    const timeout = setTimeout(() => {
+      el.scrollTo({ left: 16, behavior: "smooth" });
+      const back = setTimeout(() => {
+        el.scrollTo({ left: 0, behavior: "smooth" });
+      }, 420);
+      return () => clearTimeout(back);
+    }, 500);
+    return () => clearTimeout(timeout);
+  }, [visible]);
+
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!scrollRef.current) return;
     setIsDragging(true);
@@ -171,8 +186,14 @@ export default function Screenshots() {
         {/* Screenshots carousel wrapper */}
         <div className="screenshots-wrapper">
           {/* Fade overlays */}
-          <div className="screenshots-fade left" style={{ opacity: canScrollLeft ? 1 : 0 }} />
-          <div className="screenshots-fade right" style={{ opacity: canScrollRight ? 1 : 0 }} />
+          <div
+            className="screenshots-fade left"
+            style={{ opacity: canScrollLeft ? 1 : 0 }}
+          />
+          <div
+            className="screenshots-fade right"
+            style={{ opacity: canScrollRight ? 1 : 0 }}
+          />
 
           {/* Left arrow */}
           <button
@@ -248,8 +269,6 @@ export default function Screenshots() {
                 </p>
               </div>
             ))}
-            {/* Spacer so right shadow/padding isn't clipped by overflow */}
-            <div className="screenshots-spacer" />
           </div>
 
           {/* Right arrow */}
@@ -344,45 +363,45 @@ export default function Screenshots() {
       <style>{`
         .screenshots-wrapper {
           position: relative;
-          padding: 0 80px;
+          /* Gutter now lives on the scroll container itself (see .screenshots-scroll),
+             not stacked here — this removes the dead-zone gap that made the
+             layout look "cut off" at rest. */
         }
 
         .screenshots-fade {
           position: absolute;
           top: 80px;
           height: 490px;
-          width: 80px;
+          width: 64px;
           z-index: 5;
           pointer-events: none;
           transition: opacity 0.3s ease;
         }
 
         .screenshots-fade.left {
-          left: 80px;
+          left: 0;
           background: linear-gradient(to right, var(--emerald-deep), transparent);
         }
 
         .screenshots-fade.right {
-          right: 80px;
+          right: 0;
           background: linear-gradient(to left, var(--emerald-deep), transparent);
         }
 
-       .screenshots-scroll {
-  display: flex;
-  gap: 24px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  cursor: grab;
-  padding: 80px 0 80px 80px;
-  scroll-padding-inline: 80px;
-  scroll-behavior: smooth;
-}
-
-.screenshots-spacer {
-  flex-shrink: 0;
-  width: 80px;
-}
+        .screenshots-scroll {
+          display: flex;
+          gap: 24px;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          cursor: grab;
+          /* Single source of truth for the horizontal gutter — matches
+             .screenshots-fade width exactly so there's no dead gap and no
+             double-padding stack with the wrapper. */
+          padding: 80px 64px;
+          scroll-padding-inline: 64px;
+          scroll-behavior: smooth;
+        }
 
         .screenshots-scroll:active {
           cursor: grabbing;
@@ -399,7 +418,10 @@ export default function Screenshots() {
 
         .screenshot-card {
           flex: 0 0 220px;
-          scroll-snap-align: center;
+          /* "start" alignment keeps a consistent, deliberate peek of the next
+             card at rest and after each snap — "center" produced a randomly
+             cropped edge depending on container width, which read as broken. */
+          scroll-snap-align: start;
           cursor: pointer;
         }
 
@@ -470,9 +492,6 @@ export default function Screenshots() {
           .screenshots-heading {
             font-size: 28px !important;
           }
-          .screenshots-wrapper {
-            padding: 0;
-          }
           .screenshots-fade {
             display: none;
           }
@@ -481,11 +500,8 @@ export default function Screenshots() {
           }
           .screenshots-scroll {
             gap: 16px;
-            padding: 24px 0 24px 24px;
+            padding: 24px;
             scroll-padding-inline: 24px;
-          }
-          .screenshots-spacer {
-            width: 24px;
           }
           .screenshot-card {
             flex: 0 0 180px;

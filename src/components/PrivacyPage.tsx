@@ -267,15 +267,22 @@ export default function PrivacyPage() {
             <tbody>
               {content.s6_table.rows.map((row, ri) => (
                 <tr key={ri}>
-                  {row.map((cell, ci) => (
-                    <td key={ci} style={ci === 2 ? { ...tdStyle, borderBottom: ri === row.length - 1 ? 'none' : undefined } : tdStyle}>
-                      {ci === 2 ? (
-                        <a href={`https://${cell}`} style={{ color: 'var(--gold-light)' }}>{cell}</a>
-                      ) : (
-                        t(cell as { bn: string; en: string })
-                      )}
-                    </td>
-                  ))}
+                  {row.map((cell, ci) => {
+                    const isLastRow = ri === content.s6_table.rows.length - 1;
+                    if (ci === 2) {
+                      const url = cell as string;
+                      return (
+                        <td key={ci} style={{ ...tdStyle, borderBottom: isLastRow ? 'none' : undefined }}>
+                          <a href={`https://${url}`} style={{ color: 'var(--gold-light)' }}>{url}</a>
+                        </td>
+                      );
+                    }
+                    return (
+                      <td key={ci} style={tdStyle}>
+                        {t(cell as { bn: string; en: string })}
+                      </td>
+                    );
+                  })}
                 </tr>
               ))}
             </tbody>
