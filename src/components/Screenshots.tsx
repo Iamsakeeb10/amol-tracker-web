@@ -108,8 +108,10 @@ export default function Screenshots() {
 
   const openPreview = (i: number) => setPreviewIndex(i);
   const closePreview = () => setPreviewIndex(null);
-  const prevPreview = () => setPreviewIndex((p) => (p !== null ? (p - 1 + total) % total : null));
-  const nextPreview = () => setPreviewIndex((p) => (p !== null ? (p + 1) % total : null));
+  const prevPreview = () =>
+    setPreviewIndex((p) => (p !== null ? (p - 1 + total) % total : null));
+  const nextPreview = () =>
+    setPreviewIndex((p) => (p !== null ? (p + 1) % total : null));
 
   useEffect(() => {
     if (previewIndex === null) return;
@@ -168,6 +170,10 @@ export default function Screenshots() {
 
         {/* Screenshots carousel wrapper */}
         <div className="screenshots-wrapper">
+          {/* Fade overlays */}
+          <div className="screenshots-fade left" style={{ opacity: canScrollLeft ? 1 : 0 }} />
+          <div className="screenshots-fade right" style={{ opacity: canScrollRight ? 1 : 0 }} />
+
           {/* Left arrow */}
           <button
             className="screenshot-arrow left"
@@ -242,6 +248,8 @@ export default function Screenshots() {
                 </p>
               </div>
             ))}
+            {/* Spacer so right shadow/padding isn't clipped by overflow */}
+            <div className="screenshots-spacer" />
           </div>
 
           {/* Right arrow */}
@@ -261,14 +269,25 @@ export default function Screenshots() {
         typeof document !== "undefined" &&
         createPortal(
           <div className="screenshot-modal-overlay" onClick={closePreview}>
-            <div className="screenshot-modal" onClick={(e) => e.stopPropagation()}>
+            <div
+              className="screenshot-modal"
+              onClick={(e) => e.stopPropagation()}
+            >
               {/* Close */}
-              <button className="screenshot-modal-close" onClick={closePreview} aria-label="Close">
+              <button
+                className="screenshot-modal-close"
+                onClick={closePreview}
+                aria-label="Close"
+              >
                 <X size={20} />
               </button>
 
               {/* Prev */}
-              <button className="screenshot-modal-nav prev" onClick={prevPreview} aria-label="Previous">
+              <button
+                className="screenshot-modal-nav prev"
+                onClick={prevPreview}
+                aria-label="Previous"
+              >
                 <ChevronLeft size={28} />
               </button>
 
@@ -310,7 +329,11 @@ export default function Screenshots() {
               </div>
 
               {/* Next */}
-              <button className="screenshot-modal-nav next" onClick={nextPreview} aria-label="Next">
+              <button
+                className="screenshot-modal-nav next"
+                onClick={nextPreview}
+                aria-label="Next"
+              >
                 <ChevronRight size={28} />
               </button>
             </div>
@@ -324,6 +347,26 @@ export default function Screenshots() {
           padding: 0 80px;
         }
 
+        .screenshots-fade {
+          position: absolute;
+          top: 80px;
+          height: 490px;
+          width: 80px;
+          z-index: 5;
+          pointer-events: none;
+          transition: opacity 0.3s ease;
+        }
+
+        .screenshots-fade.left {
+          left: 80px;
+          background: linear-gradient(to right, var(--emerald-deep), transparent);
+        }
+
+        .screenshots-fade.right {
+          right: 80px;
+          background: linear-gradient(to left, var(--emerald-deep), transparent);
+        }
+
        .screenshots-scroll {
   display: flex;
   gap: 24px;
@@ -331,9 +374,14 @@ export default function Screenshots() {
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   cursor: grab;
-  padding: 80px 80px;        /* was "8px 0" — adds space so first/last cards aren't flush against the arrows */
-  scroll-padding-inline: 80px; /* keeps snap centering correct with the new padding */
+  padding: 80px 0 80px 80px;
+  scroll-padding-inline: 80px;
   scroll-behavior: smooth;
+}
+
+.screenshots-spacer {
+  flex-shrink: 0;
+  width: 80px;
 }
 
         .screenshots-scroll:active {
@@ -363,13 +411,11 @@ export default function Screenshots() {
           border: 1.5px solid rgba(201,168,76,0.3);
           background: #0D3D2E;
           overflow: hidden;
-          box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          transition: transform 0.2s ease;
         }
 
         .screenshot-card:hover .screenshot-phone {
           transform: translateY(-4px);
-          box-shadow: 0 24px 70px rgba(0,0,0,0.5);
         }
 
         .screenshot-arrow {
@@ -389,14 +435,12 @@ export default function Screenshots() {
           justify-content: center;
           transition: all 0.2s ease;
           backdrop-filter: blur(8px);
-          box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
         .screenshot-arrow:hover {
           background: linear-gradient(135deg, rgba(20,80,60,0.95), rgba(30,100,75,0.95));
           border-color: rgba(201,168,76,0.7);
           transform: translateY(-50%) scale(1.08);
-          box-shadow: 0 6px 25px rgba(0,0,0,0.4);
         }
 
         .screenshot-arrow:active {
@@ -429,16 +473,20 @@ export default function Screenshots() {
           .screenshots-wrapper {
             padding: 0;
           }
+          .screenshots-fade {
+            display: none;
+          }
           .screenshot-arrow {
             display: none;
           }
-          @media (max-width: 767px) {
-  .screenshots-scroll {
-    gap: 16px;
-    padding: 24px 24px;        /* was "8px 16px" — enough vertical room for the shadow, plus left/right space to match desktop */
-    scroll-padding-inline: 24px;
-  }
-}
+          .screenshots-scroll {
+            gap: 16px;
+            padding: 24px 0 24px 24px;
+            scroll-padding-inline: 24px;
+          }
+          .screenshots-spacer {
+            width: 24px;
+          }
           .screenshot-card {
             flex: 0 0 180px;
           }
@@ -500,7 +548,6 @@ export default function Screenshots() {
           justify-content: center;
           transition: all 0.2s ease;
           backdrop-filter: blur(8px);
-          box-shadow: 0 4px 16px rgba(0,0,0,0.3);
         }
 
         .screenshot-modal-close:hover {
@@ -523,7 +570,6 @@ export default function Screenshots() {
           justify-content: center;
           transition: all 0.2s ease;
           backdrop-filter: blur(8px);
-          box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
         .screenshot-modal-nav:hover {
@@ -552,7 +598,7 @@ export default function Screenshots() {
           border: 2px solid rgba(201,168,76,0.35);
           background: #0D3D2E;
           overflow: hidden;
-          box-shadow: 0 32px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,76,0.1);
+          box-shadow: none;
         }
 
         .screenshot-modal-caption {
