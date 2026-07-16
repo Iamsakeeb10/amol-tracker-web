@@ -35,6 +35,7 @@ export const content = {
     screenshots: { bn: 'স্ক্রিনশট', en: 'Screenshots' },
     about: { bn: 'সম্পর্কে', en: 'About' },
     privacy: { bn: 'প্রাইভেসি', en: 'Privacy' },
+    support: { bn: 'সাপোর্ট', en: 'Support' },
     download: { bn: 'ডাউনলোড', en: 'Download' },
     langToggle: { bn: 'English', en: 'বাংলা' },
   },
@@ -347,9 +348,75 @@ export const content = {
       bn: 'মুসলিম উম্মাহর জন্য তৈরি, ভালোবাসা দিয়ে',
       en: 'Built for the Muslim Ummah, with love',
     },
+    support: { bn: 'সাপোর্ট', en: 'Support' },
     privacy: { bn: 'প্রাইভেসি পলিসি', en: 'Privacy Policy' },
     terms: { bn: 'শর্তাবলী', en: 'Terms & Conditions' },
     copyright: { bn: '© ২০২৬ আমল ট্র্যাকার · Grey Forge', en: '© 2026 Amol Tracker · Grey Forge' },
+  },
+  support: {
+    badge: { bn: 'সাপোর্ট', en: 'Support' },
+    title: { bn: 'আমরা কীভাবে সাহায্য করতে পারি?', en: 'How can we help?' },
+    subtitle: {
+      bn: 'সাধারণ প্রশ্নের উত্তর খুঁজুন অথবা সরাসরি যোগাযোগ করুন।',
+      en: 'Find answers to common questions or reach out to us directly.',
+    },
+    emailTitle: { bn: 'ইমেইল করুন', en: 'Email Us' },
+    emailDesc: { bn: 'সরাসরি আমাদের ইমেইল করুন', en: 'Send us an email directly' },
+    whatsappTitle: { bn: 'হোয়াটসঅ্যাপ', en: 'WhatsApp' },
+    whatsappDesc: { bn: 'হোয়াটসঅ্যাপে যোগাযোগ করুন', en: 'Message us on WhatsApp' },
+    bugTitle: { bn: 'বাগ রিপোর্ট', en: 'Report a Bug' },
+    bugDesc: { bn: 'সমস্যা জানান', en: 'Let us know about an issue' },
+    featureTitle: { bn: 'ফিচার প্রস্তাব', en: 'Suggest a Feature' },
+    featureDesc: { bn: 'নতুন ফিচার প্রস্তাব করুন', en: 'Propose a new feature' },
+    responseTime: {
+      bn: 'আমরা সাধারণত ২৪–৭২ ঘণ্টার মধ্যে উত্তর দিই।',
+      en: 'We usually respond within 24–72 hours.',
+    },
+    faqTitle: { bn: 'সচরাচর জিজ্ঞাসা', en: 'Frequently Asked Questions' },
+    faq: [
+      {
+        q: { bn: 'আমল ট্র্যাকার কী?', en: 'What is Amol Tracker?' },
+        a: {
+          bn: 'আমল ট্র্যাকার একটি ইসলামিক অভ্যাস ট্র্যাকার অ্যাপ যেখানে আপনি প্রতিদিনের নামাজ, যিকির, কুরআন তিলাওয়াত সহ গুরুত্বপূর্ণ আমলগুলো ট্র্যাক করতে পারবেন। বাংলাদেশি মুসলিমদের জন্য তৈরি।',
+          en: 'Amol Tracker is an Islamic habit tracker app where you can track your daily namaz, zikir, Quran recitation and other important amal. Built for Bangladeshi Muslims.',
+        },
+      },
+      {
+        q: { bn: 'স্ট্রিক কীভাবে কাজ করে?', en: 'How do streaks work?' },
+        a: {
+          bn: 'প্রতিদিন আমল লগ করলে আপনার স্ট্রিক বাড়বে। ধারাবাহিকতা বজায় রাখতে স্ট্রিক ফ্রিজ পাবেন। মাইলস্টোন পূরণ করলে ব্যাজ অর্জন করবেন।',
+          en: 'Your streak grows each day you log amal. You get streak freezes to maintain consistency. Earn badges by hitting milestones.',
+        },
+      },
+      {
+        q: { bn: 'কমিউনিটি শিট কী?', en: 'What is the Community Sheet?' },
+        a: {
+          bn: 'কমিউনিটি শিটে আপনার বন্ধুদের সাথে একসাথে আমল ট্র্যাক করতে পারবেন। সবার দৈনিক আমল একটি লাইভ শিটে দেখা যায়, যা জবাবদিহিতার মাধ্যমে ভালো অভ্যাস গড়তে সাহায্য করে।',
+          en: "With the Community Sheet, you can track amal together with your friends. Everyone's daily amal appears on a live sheet, helping build good habits through accountability.",
+        },
+      },
+      {
+        q: { bn: 'আমি কীভাবে বন্ধুদের আমন্ত্রণ জানাব?', en: 'How do I invite friends?' },
+        a: {
+          bn: 'অ্যাপের কমিউনিটি সেকশন থেকে আপনার কমিউনিটি কোড বা আমন্ত্রণ লিংক শেয়ার করুন। বন্ধুরা লিংকে ক্লিক করে সরাসরি আপনার কমিউনিটিতে যোগ দিতে পারবে।',
+          en: "Share your community code or invite link from the app's Community section. Friends can click the link to join your community directly.",
+        },
+      },
+      {
+        q: { bn: 'আমার ডেটা কি নিরাপদ?', en: 'Is my data private?' },
+        a: {
+          bn: 'হ্যাঁ, আপনার ডেটা সম্পূর্ণ নিরাপদ। অ্যাপটি সম্পূর্ণ বিনামূল্যে, কোনো বিজ্ঞাপন নেই, কোনো প্রিমিয়াম নেই। আপনার ডেটা বিক্রি হয় না।',
+          en: 'Yes, your data is completely safe. The app is completely free, no ads, no premium. Your data is never sold.',
+        },
+      },
+      {
+        q: { bn: 'আমি কীভাবে বাগ রিপোর্ট করব বা ফিচার প্রস্তাব করব?', en: 'How do I report a bug or suggest a feature?' },
+        a: {
+          bn: 'উপরের যোগাযোগের অপশন ব্যবহার করুন — ইমেইল বা হোয়াটসঅ্যাপে আমাদের জানাতে পারেন। বাগ রিপোর্টের জন্য বাগ রিপোর্ট বোতাম, ফিচার প্রস্তাবের জন্য ফিচার প্রস্তাব বোতাম ব্যবহার করুন।',
+          en: 'Use the contact options above — email or WhatsApp us directly. Use the Report a Bug button for bugs, or the Suggest a Feature button for feature requests.',
+        },
+      },
+    ],
   },
 } as const;
 

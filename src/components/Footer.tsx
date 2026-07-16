@@ -85,6 +85,9 @@ export default function Footer() {
               marginBottom: 24,
             }}
           >
+            <Link href="/support" className="footer-link">
+              {t(content.footer.support)}
+            </Link>
             <Link href="/privacy" className="footer-link">
               {t(content.footer.privacy)}
             </Link>

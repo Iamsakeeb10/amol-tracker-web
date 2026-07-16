@@ -23,7 +23,7 @@ export default function TermsPage() {
               gap: 6,
             }}
           >
-            ← amoltracker.app
+            ←
           </Link>
         </div>
       </div>

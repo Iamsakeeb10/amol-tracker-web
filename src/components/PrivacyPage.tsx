@@ -23,7 +23,7 @@ export default function PrivacyPage() {
               gap: 6,
             }}
           >
-            ← amoltracker.app
+            ←
           </Link>
         </div>
       </div>

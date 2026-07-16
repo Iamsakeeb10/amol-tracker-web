@@ -9,7 +9,8 @@ const navLinks = [
   { key: 'features' as const, href: '#features' },
   { key: 'screenshots' as const, href: '#screenshots' },
   { key: 'about' as const, href: '#about' },
-  { key: 'privacy' as const, href: '#privacy' },
+  { key: 'privacy' as const, href: '/privacy' },
+  { key: 'support' as const, href: '/support' },
 ];
 
 export default function Navbar() {
@@ -39,9 +40,13 @@ export default function Navbar() {
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    if (href.startsWith('/')) {
+      window.location.href = href;
+    } else {
+      const el = document.querySelector(href);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -358,6 +363,6 @@ export default function Navbar() {
   );
 }
 
-function keyToNav(key: string): 'features' | 'screenshots' | 'about' | 'privacy' {
-  return key as 'features' | 'screenshots' | 'about' | 'privacy';
+function keyToNav(key: string): 'features' | 'screenshots' | 'about' | 'privacy' | 'support' {
+  return key as 'features' | 'screenshots' | 'about' | 'privacy' | 'support';
 }
