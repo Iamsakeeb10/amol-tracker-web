@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronUp } from 'lucide-react';
 import { content } from '@/lib/content';
 import { useLang } from '@/context/LanguageContext';
@@ -13,11 +13,25 @@ export default function Footer() {
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setShowScrollTop(window.scrollY > 400);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+  const rafRef = useRef<number | null>(null);
+
+  const onScroll = useCallback(() => {
+    if (rafRef.current) return;
+    rafRef.current = requestAnimationFrame(() => {
+      setShowScrollTop(window.scrollY > 400);
+      rafRef.current = null;
+    });
   }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, [onScroll]);
 
   useEffect(() => {
     const obs = new IntersectionObserver(

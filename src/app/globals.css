@@ -24,7 +24,17 @@
   padding: 0;
 }
 
-html {
+/* Smooth scroll applied selectively via .html-smooth class */
+
+
+/* Performance hints */
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* Selective smooth scroll for anchor navigation */
+html.html-smooth {
   scroll-behavior: smooth;
 }
 

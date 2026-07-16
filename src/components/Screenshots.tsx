@@ -78,37 +78,37 @@ export default function Screenshots() {
     return () => clearTimeout(timeout);
   }, [visible]);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
     if (!scrollRef.current) return;
     setIsDragging(true);
     setStartX(e.pageX - scrollRef.current.offsetLeft);
     setScrollLeft(scrollRef.current.scrollLeft);
     scrollRef.current.style.cursor = "grabbing";
-  };
+  }, []);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!isDragging || !scrollRef.current) return;
     e.preventDefault();
     const x = e.pageX - scrollRef.current.offsetLeft;
     const walk = (x - startX) * 1.5;
     scrollRef.current.scrollLeft = scrollLeft - walk;
-  };
+  }, [isDragging, startX, scrollLeft]);
 
-  const handleMouseUp = () => {
+  const handleMouseUp = useCallback(() => {
     setIsDragging(false);
     if (scrollRef.current) {
       scrollRef.current.style.cursor = "grab";
     }
-  };
+  }, []);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     if (isDragging) {
       setIsDragging(false);
       if (scrollRef.current) {
         scrollRef.current.style.cursor = "grab";
       }
     }
-  };
+  }, [isDragging]);
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
@@ -240,7 +240,8 @@ export default function Screenshots() {
                       fill
                       style={{ objectFit: "cover" }}
                       sizes="220px"
-                      priority={i < 4}
+                      priority={i < 2}
+                      loading={i < 2 ? "eager" : "lazy"}
                       onError={() => handleError(i)}
                     />
                   )}
@@ -362,7 +363,7 @@ export default function Screenshots() {
           display: flex;
           gap: 24px;
           overflow-x: auto;
-          scroll-snap-type: x mandatory;
+          scroll-snap-type: x proximity;
           -webkit-overflow-scrolling: touch;
           cursor: grab;
           /* Gutter width matches the mask fade width below exactly, so

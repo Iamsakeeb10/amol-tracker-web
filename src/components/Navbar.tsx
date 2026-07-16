@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Menu, X } from 'lucide-react';
 import { content } from '@/lib/content';
 import { useLang } from '@/context/LanguageContext';
@@ -16,18 +16,29 @@ const navLinks = [
 export default function Navbar() {
   const { t, toggleLang } = useLang();
   const [show, setShow] = useState(true);
-  const [lastY, setLastY] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const lastYRef = useRef(0);
+  const rafRef = useRef<number | null>(null);
+
+  const onScroll = useCallback(() => {
+    if (rafRef.current) return;
+    rafRef.current = requestAnimationFrame(() => {
+      const y = window.scrollY;
+      setShow(y < lastYRef.current || y < 80);
+      lastYRef.current = y;
+      rafRef.current = null;
+    });
+  }, []);
 
   useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY;
-      setShow(y < lastY || y < 80);
-      setLastY(y);
-    };
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [lastY]);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, [onScroll]);
 
   useEffect(() => {
     if (mobileOpen) {
@@ -43,9 +54,15 @@ export default function Navbar() {
     if (href.startsWith('/')) {
       window.location.href = href;
     } else {
+      // Add smooth scroll class temporarily for anchor navigation
+      document.documentElement.classList.add('html-smooth');
       const el = document.querySelector(href);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
+        // Remove class after scroll completes
+        setTimeout(() => {
+          document.documentElement.classList.remove('html-smooth');
+        }, 1000);
       }
     }
   };
