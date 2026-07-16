@@ -185,16 +185,6 @@ export default function Screenshots() {
 
         {/* Screenshots carousel wrapper */}
         <div className="screenshots-wrapper">
-          {/* Fade overlays */}
-          <div
-            className="screenshots-fade left"
-            style={{ opacity: canScrollLeft ? 1 : 0 }}
-          />
-          <div
-            className="screenshots-fade right"
-            style={{ opacity: canScrollRight ? 1 : 0 }}
-          />
-
           {/* Left arrow */}
           <button
             className="screenshot-arrow left"
@@ -368,26 +358,6 @@ export default function Screenshots() {
              layout look "cut off" at rest. */
         }
 
-        .screenshots-fade {
-          position: absolute;
-          top: 80px;
-          height: 490px;
-          width: 64px;
-          z-index: 5;
-          pointer-events: none;
-          transition: opacity 0.3s ease;
-        }
-
-        .screenshots-fade.left {
-          left: 0;
-          background: linear-gradient(to right, var(--emerald-deep), transparent);
-        }
-
-        .screenshots-fade.right {
-          right: 0;
-          background: linear-gradient(to left, var(--emerald-deep), transparent);
-        }
-
         .screenshots-scroll {
           display: flex;
           gap: 24px;
@@ -395,12 +365,31 @@ export default function Screenshots() {
           scroll-snap-type: x mandatory;
           -webkit-overflow-scrolling: touch;
           cursor: grab;
-          /* Single source of truth for the horizontal gutter — matches
-             .screenshots-fade width exactly so there's no dead gap and no
-             double-padding stack with the wrapper. */
+          /* Gutter width matches the mask fade width below exactly, so
+             padding whitespace (not a real card) sits under the fade at
+             true start/end — no double-padding stack with the wrapper. */
           padding: 80px 64px;
           scroll-padding-inline: 64px;
           scroll-behavior: smooth;
+          /* Masking the container's own content (instead of a positioned
+             overlay div) means the fade is applied to whatever pixels are
+             actually at the edge at any scroll offset — it can never drift
+             out of sync with a peeking card the way an absolutely
+             positioned overlay can. */
+          -webkit-mask-image: linear-gradient(
+            to right,
+            transparent 0,
+            black 64px,
+            black calc(100% - 64px),
+            transparent 100%
+          );
+          mask-image: linear-gradient(
+            to right,
+            transparent 0,
+            black 64px,
+            black calc(100% - 64px),
+            transparent 100%
+          );
         }
 
         .screenshots-scroll:active {
@@ -492,9 +481,6 @@ export default function Screenshots() {
           .screenshots-heading {
             font-size: 28px !important;
           }
-          .screenshots-fade {
-            display: none;
-          }
           .screenshot-arrow {
             display: none;
           }
@@ -502,6 +488,8 @@ export default function Screenshots() {
             gap: 16px;
             padding: 24px;
             scroll-padding-inline: 24px;
+            -webkit-mask-image: none;
+            mask-image: none;
           }
           .screenshot-card {
             flex: 0 0 180px;
