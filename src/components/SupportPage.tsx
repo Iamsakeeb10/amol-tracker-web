@@ -13,6 +13,7 @@ import {
   ArrowLeft,
   Copy,
   Check,
+  Download,
 } from 'lucide-react';
 import { content } from '@/lib/content';
 import { useLang } from '@/context/LanguageContext';
@@ -99,6 +100,56 @@ export default function SupportPage() {
         >
           {t(content.support.subtitle)}
         </p>
+
+        {/* Download App Card */}
+        <a
+          href="https://play.google.com/store/apps/details?id=com.shakib.amol.amol_tracker_app"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 14,
+            background: 'rgba(201,168,76,0.08)',
+            border: '1px solid rgba(201,168,76,0.2)',
+            borderRadius: 14,
+            padding: 20,
+            marginBottom: 32,
+            textDecoration: 'none',
+            transition: 'border-color 0.2s, background 0.2s',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = 'rgba(201,168,76,0.4)';
+            e.currentTarget.style.background = 'rgba(201,168,76,0.12)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = 'rgba(201,168,76,0.2)';
+            e.currentTarget.style.background = 'rgba(201,168,76,0.08)';
+          }}
+        >
+          <div
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: '50%',
+              background: 'rgba(201,168,76,0.12)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0,
+            }}
+          >
+            <Download size={22} color="var(--gold)" />
+          </div>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--white)', marginBottom: 2 }}>
+              Get it on Google Play
+            </div>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)' }}>
+              Amol Tracker — Islamic habit tracker
+            </div>
+          </div>
+        </a>
 
         {/* Contact Cards Grid */}
         <div style={gridStyle} className="support-grid">

@@ -44,6 +44,10 @@ export const metadata: Metadata = {
     description: 'Daily Islamic habit tracker for Muslims.',
     images: ['/og-image.png'],
   },
+  other: {
+    'google-play-app': 'com.shakib.amol.amol_tracker_app',
+    'google-play-url': 'https://play.google.com/store/apps/details?id=com.shakib.amol.amol_tracker_app',
+  },
 };
 
 export default function RootLayout({
