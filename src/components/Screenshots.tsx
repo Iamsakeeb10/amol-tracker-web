@@ -18,6 +18,8 @@ const SCREENSHOT_FILES = [
   "asmaul_husna",
   "course",
   "report",
+  "gender_selection_modal",
+  "special_toggle",
 ];
 
 export default function Screenshots() {

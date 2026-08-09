@@ -23,6 +23,8 @@ import {
   Share2,
   Repeat,
   Users,
+  Heart,
+  Shield,
 } from 'lucide-react';
 import { PrayingHands, Mosque, Tasbih } from './icons';
 
@@ -49,8 +51,8 @@ export const content = {
       en: 'Track your daily Islamic\nhabits — together',
     },
     subheadline: {
-      bn: 'স্ট্রিক, কমিউনিটি শিট, হিজরি ক্যালেন্ডার ও আরও অনেক কিছু নিয়ে। আপনার বন্ধুদের সাথে জবাবদিহিতার মাধ্যমে ভালো অভ্যাস গড়ুন।',
-      en: 'With streaks, community sheet, Hijri calendar and more. Build good habits through accountability with your friends.',
+      bn: 'স্ট্রিক, কমিউনিটি শিট, জেন্ডার-ভিত্তিক আমল, বিশেষ মোড ও আরও অনেক কিছু নিয়ে। আপনার বন্ধুদের সাথে জবাবদিহিতার মাধ্যমে ভালো অভ্যাস গড়ুন।',
+      en: 'With streaks, community sheet, gender-based amal, special mode, and more. Build good habits through accountability with your friends.',
     },
     cta: { bn: 'Google Play থেকে ডাউনলোড করুন', en: 'Download on Google Play' },
     ctaSub: { bn: 'বিনামূল্যে · কোনো বিজ্ঞাপন নেই', en: 'Free · No ads' },
@@ -95,6 +97,22 @@ export const content = {
         desc: {
           bn: '৯টি গুরুত্বপূর্ণ আমল ট্র্যাক করুন। ফরয নামাজ থেকে আযকার পর্যন্ত সব।',
           en: 'Track 9 important daily amal. From Fard prayers to daily adhkar.',
+        },
+      },
+      {
+        icon: Heart,
+        title: { bn: 'সবার জন্য উপযোগী আমল', en: 'Inclusive Amal Tracking' },
+        desc: {
+          bn: 'নারী-পুরুষ সকলের জন্য প্রযোজ্য আমল এবং নারীদের বিশেষ সময়ের জন্য স্বয়ংক্রিয় অ্যাডজাস্টমেন্ট।',
+          en: 'Universal amal tracking with automatic adjustments for special times (Menstruation) for women.',
+        },
+      },
+      {
+        icon: Shield,
+        title: { bn: 'নিরাপদ কমিউনিটি পরিবেশ', en: 'Safe Community Environment' },
+        desc: {
+          bn: 'ব্যক্তিগত গোপনীয়তা বজায় রাখতে লিডারবোর্ড ও ফিড সমলিঙ্গের ব্যবহারকারীদের মধ্যে সীমাবদ্ধ।',
+          en: 'Leaderboards and feeds are restricted to same-gender users to ensure privacy and comfort.',
         },
       },
       {
@@ -300,6 +318,8 @@ export const content = {
       { bn: 'আসমাউল হুসনা', en: 'Asma ul Husna' },
       { bn: 'কুইজ', en: 'Quiz' },
       { bn: 'রিপোর্ট', en: 'Reports' },
+      { bn: 'লিঙ্গ নির্বাচন', en: 'Gender Selection' },
+      { bn: 'বিশেষ সময়', en: 'Special Time' },
     ],
   },
   about: {
