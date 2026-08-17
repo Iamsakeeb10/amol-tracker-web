@@ -9,6 +9,9 @@ import { createPortal } from "react-dom";
 
 const SCREENSHOT_FILES = [
   "home",
+  "battle_screen",
+  "waiting_room",
+  "result_screen",
   "community",
   "calendar",
   "leaderboard",

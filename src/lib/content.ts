@@ -25,6 +25,7 @@ import {
   Users,
   Heart,
   Shield,
+  Swords,
 } from 'lucide-react';
 import { PrayingHands, Mosque, Tasbih } from './icons';
 
@@ -91,6 +92,14 @@ export const content = {
     showMore: { bn: 'আরও দেখুন', en: 'Show More' },
     showLess: { bn: 'কম দেখুন', en: 'Show Less' },
     items: [
+      {
+        icon: Swords,
+        title: { bn: 'নলেজ ব্যাটল', en: 'Knowledge Battle' },
+        desc: {
+          bn: 'বন্ধুদের সাথে রিয়েল-টাইমে ইসলামিক কুইজে প্রতিযোগিতা করুন।',
+          en: 'Compete with friends in real-time Islamic quizzes.',
+        },
+      },
       {
         icon: ClipboardList,
         title: { bn: 'দৈনিক আমল লগ', en: 'Daily Amal Log' },
@@ -309,6 +318,9 @@ export const content = {
     },
     captions: [
       { bn: 'হোম স্ক্রিন', en: 'Home Screen' },
+      { bn: 'নলেজ ব্যাটল', en: 'Knowledge Battle' },
+      { bn: 'ওয়েটিং রুম', en: 'Waiting Room' },
+      { bn: 'ব্যাটল রেজাল্ট', en: 'Battle Result' },
       { bn: 'কমিউনিটি শিট', en: 'Community Sheet' },
       { bn: 'হিজরি ক্যালেন্ডার', en: 'Hijri Calendar' },
       { bn: 'লিডারবোর্ড', en: 'Leaderboard' },

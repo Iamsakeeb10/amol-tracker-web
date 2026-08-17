@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://amoltracker.app'),
   title: 'Amol Tracker — আমল ট্র্যাকার',
   description:
-    'প্রতিদিনের ইসলামিক আমল ট্র্যাক করুন — স্ট্রিক, কমিউনিটি ও হিজরি ক্যালেন্ডার সহ। Daily Islamic habit tracker with streaks, community & Hijri calendar.',
+    'প্রতিদিনের ইসলামিক আমল ট্র্যাক করুন এবং বন্ধুদের সাথে নলেজ ব্যাটল খেলুন। Daily Islamic habit tracker with streaks, community, Hijri calendar, & real-time Islamic quiz battles.',
   keywords: [
     'amol tracker',
     'আমল ট্র্যাকার',
@@ -25,6 +25,8 @@ export const metadata: Metadata = {
     'muslim app',
     'quran tracker',
     'namaz tracker',
+    'knowledge battle',
+    'islamic quiz',
   ],
   authors: [{ name: 'Grey Forge' }],
   creator: 'Grey Forge',
